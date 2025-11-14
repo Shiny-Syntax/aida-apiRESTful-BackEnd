@@ -14,9 +14,14 @@ public class AgendaMapper {
         a.setTipo(req.getTipo());
         a.setDescricao(req.getDescricao());
         a.setDataHora(req.getDataHora());
-        a.setPrioridade(req.getPrioridade());
+        // map prioridade and status safely
+        if (req.getPrioridade() != null) {
+            a.setPrioridade(com.shinysyntax.aida.aida.enums.Priority.fromLabel(req.getPrioridade()));
+        }
         a.setPlataforma(req.getPlataforma());
-        a.setStatus(req.getStatus());
+        if (req.getStatus() != null) {
+            a.setStatus(com.shinysyntax.aida.aida.enums.AgendaStatus.fromLabel(req.getStatus()));
+        }
         a.setColaborador(colaborador);
         return a;
     }
@@ -28,9 +33,9 @@ public class AgendaMapper {
         r.setTipo(a.getTipo());
         r.setDescricao(a.getDescricao());
         r.setDataHora(a.getDataHora());
-        r.setPrioridade(a.getPrioridade());
+        r.setPrioridade(a.getPrioridade() == null ? null : a.getPrioridade().getLabel());
         r.setPlataforma(a.getPlataforma());
-        r.setStatus(a.getStatus());
+        r.setStatus(a.getStatus() == null ? null : a.getStatus().getLabel());
         if (a.getColaborador() != null) r.setColaboradorCpf(a.getColaborador().getCpf());
         return r;
     }

@@ -18,7 +18,14 @@ public class AgendaServiceImpl implements AgendaService {
     public AgendaServiceImpl(AgendaRepository repo) { this.repo = repo; }
 
     @Override
-    public Agenda create(Agenda agenda) { Objects.requireNonNull(agenda, "agenda must not be null"); return Objects.requireNonNull(repo.save(agenda)); }
+    public Agenda create(Agenda agenda) {
+        Objects.requireNonNull(agenda, "agenda must not be null");
+        // business validation: dataHora must be future
+        if (agenda.getDataHora() != null && !agenda.getDataHora().isAfter(java.time.LocalDateTime.now())) {
+            throw new com.shinysyntax.aida.aida.exception.BadRequestException("dataHora must be in the future");
+        }
+        return Objects.requireNonNull(repo.save(agenda));
+    }
 
     @Override
     public Agenda update(Long id, Agenda agenda) {

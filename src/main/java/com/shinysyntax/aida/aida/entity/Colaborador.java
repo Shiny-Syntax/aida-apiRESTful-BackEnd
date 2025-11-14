@@ -6,6 +6,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
@@ -32,14 +33,18 @@ public class Colaborador {
     private LocalDate dataNascimento;
 
     private String cargo;
-    private String modalidade;
+    @Convert(converter = com.shinysyntax.aida.aida.converter.ModalidadeConverter.class)
+    @Column(length = 20)
+    private com.shinysyntax.aida.aida.enums.Modalidade modalidade;
     private LocalDate dataAdmissao;
 
     @Lob
-    private String problemaSaude;
+    @Column(columnDefinition = "CLOB DEFAULT 'NÃO POSSUI PROBLEMAS DE SAÚDE'")
+    private String problemaSaude = "NÃO POSSUI PROBLEMAS DE SAÚDE";
 
     @Lob
-    private String medicamentoUsoDiario;
+    @Column(columnDefinition = "CLOB DEFAULT 'NÃO FAZ USO DE MEDICAMENTO CONTROLADO'")
+    private String medicamentoUsoDiario = "NÃO FAZ USO DE MEDICAMENTO CONTROLADO";
 
     @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Agenda> agendas = new ArrayList<>();
@@ -47,7 +52,11 @@ public class Colaborador {
     @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegistroDiario> registros = new ArrayList<>();
 
-    public Colaborador() {}
+    public Colaborador() {
+        // ensure default values on entity level as well
+        if (this.problemaSaude == null) this.problemaSaude = "NÃO POSSUI PROBLEMAS DE SAÚDE";
+        if (this.medicamentoUsoDiario == null) this.medicamentoUsoDiario = "NÃO FAZ USO DE MEDICAMENTO CONTROLADO";
+    }
 
     // getters and setters
     public String getCpf() { return cpf; }
@@ -62,8 +71,8 @@ public class Colaborador {
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
     public String getCargo() { return cargo; }
     public void setCargo(String cargo) { this.cargo = cargo; }
-    public String getModalidade() { return modalidade; }
-    public void setModalidade(String modalidade) { this.modalidade = modalidade; }
+    public com.shinysyntax.aida.aida.enums.Modalidade getModalidade() { return modalidade; }
+    public void setModalidade(com.shinysyntax.aida.aida.enums.Modalidade modalidade) { this.modalidade = modalidade; }
     public LocalDate getDataAdmissao() { return dataAdmissao; }
     public void setDataAdmissao(LocalDate dataAdmissao) { this.dataAdmissao = dataAdmissao; }
     public String getProblemaSaude() { return problemaSaude; }

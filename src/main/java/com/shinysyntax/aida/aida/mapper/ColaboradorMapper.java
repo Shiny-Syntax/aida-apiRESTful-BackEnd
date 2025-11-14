@@ -3,6 +3,8 @@ package com.shinysyntax.aida.aida.mapper;
 import com.shinysyntax.aida.aida.dto.request.ColaboradorRequest;
 import com.shinysyntax.aida.aida.dto.response.ColaboradorResponse;
 import com.shinysyntax.aida.aida.entity.Colaborador;
+import com.shinysyntax.aida.aida.enums.Modalidade;
+import com.shinysyntax.aida.aida.exception.BadRequestException;
 
 public class ColaboradorMapper {
 
@@ -15,7 +17,11 @@ public class ColaboradorMapper {
         c.setTelefone(req.getTelefone());
         c.setDataNascimento(req.getDataNascimento());
         c.setCargo(req.getCargo());
-        c.setModalidade(req.getModalidade());
+        try {
+            c.setModalidade(Modalidade.fromLabel(req.getModalidade()));
+        } catch (BadRequestException e) {
+            throw e;
+        }
         c.setDataAdmissao(req.getDataAdmissao());
         c.setProblemaSaude(req.getProblemaSaude());
         c.setMedicamentoUsoDiario(req.getMedicamentoUsoDiario());
@@ -31,7 +37,7 @@ public class ColaboradorMapper {
         r.setTelefone(c.getTelefone());
         r.setDataNascimento(c.getDataNascimento());
         r.setCargo(c.getCargo());
-        r.setModalidade(c.getModalidade());
+        r.setModalidade(c.getModalidade() == null ? null : c.getModalidade().getLabel());
         r.setDataAdmissao(c.getDataAdmissao());
         r.setProblemaSaude(c.getProblemaSaude());
         r.setMedicamentoUsoDiario(c.getMedicamentoUsoDiario());

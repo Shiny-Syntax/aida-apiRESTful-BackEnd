@@ -53,9 +53,9 @@ public class DataLoader implements CommandLineRunner {
         a1.setTipo("Reunião");
         a1.setDescricao("Reunião de acompanhamento");
         a1.setDataHora(LocalDateTime.now().plusDays(1));
-        a1.setPrioridade("Alta");
+        a1.setPrioridade(com.shinysyntax.aida.aida.enums.Priority.ALTA);
         a1.setPlataforma("Zoom");
-        a1.setStatus("AGENDADO");
+        a1.setStatus(com.shinysyntax.aida.aida.enums.AgendaStatus.AGENDADO);
         a1.setColaborador(c1);
         agendaRepository.save(a1);
 

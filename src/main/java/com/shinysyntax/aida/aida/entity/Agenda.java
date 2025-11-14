@@ -1,7 +1,17 @@
 package com.shinysyntax.aida.aida.entity;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "agenda")
@@ -19,9 +29,13 @@ public class Agenda {
 
     private LocalDateTime dataHora;
 
-    private String prioridade;
+    @jakarta.persistence.Convert(converter = com.shinysyntax.aida.aida.converter.PriorityConverter.class)
+    @Column(length = 20)
+    private com.shinysyntax.aida.aida.enums.Priority prioridade;
     private String plataforma;
-    private String status;
+    @jakarta.persistence.Convert(converter = com.shinysyntax.aida.aida.converter.AgendaStatusConverter.class)
+    @Column(length = 20)
+    private com.shinysyntax.aida.aida.enums.AgendaStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "colaborador_cpf_colaborador")
@@ -38,12 +52,12 @@ public class Agenda {
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
-    public String getPrioridade() { return prioridade; }
-    public void setPrioridade(String prioridade) { this.prioridade = prioridade; }
+    public com.shinysyntax.aida.aida.enums.Priority getPrioridade() { return prioridade; }
+    public void setPrioridade(com.shinysyntax.aida.aida.enums.Priority prioridade) { this.prioridade = prioridade; }
     public String getPlataforma() { return plataforma; }
     public void setPlataforma(String plataforma) { this.plataforma = plataforma; }
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public com.shinysyntax.aida.aida.enums.AgendaStatus getStatus() { return status; }
+    public void setStatus(com.shinysyntax.aida.aida.enums.AgendaStatus status) { this.status = status; }
     public Colaborador getColaborador() { return colaborador; }
     public void setColaborador(Colaborador colaborador) { this.colaborador = colaborador; }
 }
