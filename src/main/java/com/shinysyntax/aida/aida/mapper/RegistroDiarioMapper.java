@@ -7,10 +7,15 @@ import com.shinysyntax.aida.aida.entity.RegistroDiario;
 
 public class RegistroDiarioMapper {
 
+    /**
+     * Mapeia o DTO para Entity (SEM SETAR ID!)
+     * O ID é controlado 100% pelo Hibernate.
+     */
     public static RegistroDiario toEntity(RegistroDiarioRequest req, Colaborador colaborador) {
         if (req == null) return null;
+
         RegistroDiario r = new RegistroDiario();
-        r.setId(req.getId());
+
         r.setDataRegistro(req.getDataRegistro());
         r.setEscalaEmocional(req.getEscalaEmocional());
         r.setTempoTela(req.getTempoTela());
@@ -18,12 +23,18 @@ public class RegistroDiarioMapper {
         r.setObservacoesColaborador(req.getObservacoesColaborador());
         r.setObservacoesAIDA(req.getObservacoesAIDA());
         r.setColaborador(colaborador);
+
         return r;
     }
 
+    /**
+     * Entity → DTO de resposta
+     */
     public static RegistroDiarioResponse toResponse(RegistroDiario r) {
         if (r == null) return null;
+
         RegistroDiarioResponse resp = new RegistroDiarioResponse();
+
         resp.setId(r.getId());
         resp.setDataRegistro(r.getDataRegistro());
         resp.setEscalaEmocional(r.getEscalaEmocional());
@@ -31,7 +42,10 @@ public class RegistroDiarioMapper {
         resp.setPausasRealizadas(r.getPausasRealizadas());
         resp.setObservacoesColaborador(r.getObservacoesColaborador());
         resp.setObservacoesAIDA(r.getObservacoesAIDA());
-        if (r.getColaborador() != null) resp.setColaboradorCpf(r.getColaborador().getCpf());
+
+        if (r.getColaborador() != null)
+            resp.setColaboradorCpf(r.getColaborador().getCpf());
+
         return resp;
     }
 }

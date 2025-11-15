@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class RegistroDiarioRequest {
-    private Long id;
+    
 
     @NotNull
     private LocalDate dataRegistro;
@@ -26,8 +26,7 @@ public class RegistroDiarioRequest {
     private String colaboradorCpf;
 
     // getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+
     public LocalDate getDataRegistro() { return dataRegistro; }
     public void setDataRegistro(LocalDate dataRegistro) { this.dataRegistro = dataRegistro; }
     public Integer getEscalaEmocional() { return escalaEmocional; }
