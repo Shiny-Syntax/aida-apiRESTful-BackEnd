@@ -3,6 +3,7 @@ package com.shinysyntax.aida.aida.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -47,9 +48,11 @@ public class Colaborador {
     private String medicamentoUsoDiario = "NÃO FAZ USO DE MEDICAMENTO CONTROLADO";
 
     @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Agenda> agendas = new ArrayList<>();
 
     @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<RegistroDiario> registros = new ArrayList<>();
 
     public Colaborador() {
