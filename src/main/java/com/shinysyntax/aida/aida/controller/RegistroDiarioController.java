@@ -48,7 +48,9 @@ public class RegistroDiarioController {
     @PostMapping
     public ResponseEntity<RegistroDiarioResponse> create(@Valid @RequestBody RegistroDiarioRequest req) {
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
-        Colaborador c = colaboradorRepository.findById(cpf)
+        long cpfLong;
+        try { cpfLong = Long.parseLong(cpf); } catch (NumberFormatException ex) { throw new ColaboradorNotFoundException("Colaborador not found: " + cpf); }
+        Colaborador c = colaboradorRepository.findById(cpfLong)
             .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         RegistroDiario saved = service.create(RegistroDiarioMapper.toEntity(req, c));
         RegistroDiarioResponse resp = RegistroDiarioMapper.toResponse(Objects.requireNonNull(saved));
@@ -61,7 +63,9 @@ public class RegistroDiarioController {
     public RegistroDiarioResponse update(@PathVariable Long id, @Valid @RequestBody RegistroDiarioRequest req) {
         Objects.requireNonNull(id, "id must not be null");
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
-        Colaborador c = colaboradorRepository.findById(cpf)
+        long cpfLong;
+        try { cpfLong = Long.parseLong(cpf); } catch (NumberFormatException ex) { throw new ColaboradorNotFoundException("Colaborador not found: " + cpf); }
+        Colaborador c = colaboradorRepository.findById(cpfLong)
             .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         RegistroDiario updated = service.update(id, RegistroDiarioMapper.toEntity(req, c));
         return RegistroDiarioMapper.toResponse(Objects.requireNonNull(updated));

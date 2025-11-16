@@ -48,7 +48,9 @@ public class AgendaController {
     @PostMapping
     public ResponseEntity<AgendaResponse> create(@Valid @RequestBody AgendaRequest req) {
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
-        Colaborador c = colaboradorRepository.findById(cpf)
+        long cpfLong;
+        try { cpfLong = Long.parseLong(cpf); } catch (NumberFormatException ex) { throw new ColaboradorNotFoundException("Colaborador not found: " + cpf); }
+        Colaborador c = colaboradorRepository.findById(cpfLong)
             .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         Agenda saved = service.create(AgendaMapper.toEntity(req, c));
         AgendaResponse resp = AgendaMapper.toResponse(Objects.requireNonNull(saved));
@@ -61,7 +63,9 @@ public class AgendaController {
     public AgendaResponse update(@PathVariable Long id, @Valid @RequestBody AgendaRequest req) {
         Objects.requireNonNull(id, "id must not be null");
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
-        Colaborador c = colaboradorRepository.findById(cpf)
+        long cpfLong;
+        try { cpfLong = Long.parseLong(cpf); } catch (NumberFormatException ex) { throw new ColaboradorNotFoundException("Colaborador not found: " + cpf); }
+        Colaborador c = colaboradorRepository.findById(cpfLong)
             .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         Agenda updated = service.update(id, AgendaMapper.toEntity(req, c));
         return AgendaMapper.toResponse(Objects.requireNonNull(updated));

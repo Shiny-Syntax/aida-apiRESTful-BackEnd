@@ -1,6 +1,7 @@
 package com.shinysyntax.aida.aida.entity;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +25,7 @@ public class RegistroDiario {
 
     private LocalDate dataRegistro;
 
-    private Integer escalaEmocional;
+    private Double escalaEmocional;
     private Integer tempoTela;
     private Integer pausasRealizadas;
 
@@ -35,18 +36,21 @@ public class RegistroDiario {
     private String observacoesAIDA;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "colaborador_cpf_colaborador")
+    @JoinColumn(name = "cpf_colaborador")
     private Colaborador colaborador;
+
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
 
     public RegistroDiario() {}
 
-    // getters and setters
+    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public LocalDate getDataRegistro() { return dataRegistro; }
     public void setDataRegistro(LocalDate dataRegistro) { this.dataRegistro = dataRegistro; }
-    public Integer getEscalaEmocional() { return escalaEmocional; }
-    public void setEscalaEmocional(Integer escalaEmocional) { this.escalaEmocional = escalaEmocional; }
+    public Double getEscalaEmocional() { return escalaEmocional; }
+    public void setEscalaEmocional(Double escalaEmocional) { this.escalaEmocional = escalaEmocional; }
     public Integer getTempoTela() { return tempoTela; }
     public void setTempoTela(Integer tempoTela) { this.tempoTela = tempoTela; }
     public Integer getPausasRealizadas() { return pausasRealizadas; }
@@ -57,4 +61,6 @@ public class RegistroDiario {
     public void setObservacoesAIDA(String observacoesAIDA) { this.observacoesAIDA = observacoesAIDA; }
     public Colaborador getColaborador() { return colaborador; }
     public void setColaborador(Colaborador colaborador) { this.colaborador = colaborador; }
+    public UUID getUserId() { return userId; }
+    public void setUserId(UUID userId) { this.userId = userId; }
 }

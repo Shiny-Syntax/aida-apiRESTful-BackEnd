@@ -39,7 +39,7 @@ public class ColaboradorController {
     }
 
     @GetMapping("/{cpf}")
-    public ColaboradorResponse get(@PathVariable String cpf) { return ColaboradorMapper.toResponse(service.findByCpf(cpf)); }
+    public ColaboradorResponse get(@PathVariable Long cpf) { return ColaboradorMapper.toResponse(service.findByCpf(cpf)); }
 
     @PostMapping
     public ResponseEntity<ColaboradorResponse> create(@Valid @RequestBody ColaboradorRequest req) {
@@ -51,13 +51,13 @@ public class ColaboradorController {
     }
 
     @PutMapping("/{cpf}")
-    public ColaboradorResponse update(@PathVariable String cpf, @Valid @RequestBody ColaboradorRequest req) {
+    public ColaboradorResponse update(@PathVariable Long cpf, @Valid @RequestBody ColaboradorRequest req) {
         Colaborador updated = service.update(cpf, ColaboradorMapper.toEntity(req));
         return ColaboradorMapper.toResponse(updated);
     }
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<Void> delete(@PathVariable String cpf) {
+    public ResponseEntity<Void> delete(@PathVariable Long cpf) {
         service.delete(cpf);
         return ResponseEntity.noContent().build();
     }

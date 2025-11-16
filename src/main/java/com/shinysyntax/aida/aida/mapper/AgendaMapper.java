@@ -37,7 +37,7 @@ public class AgendaMapper {
         r.setPlataforma(a.getPlataforma());
         r.setStatus(a.getStatus() == null ? null : a.getStatus().getLabel());
         if (a.getColaborador() != null) {
-            r.setColaboradorCpf(a.getColaborador().getCpf());
+            r.setColaboradorCpf(a.getColaborador().getCpf() == null ? null : String.valueOf(a.getColaborador().getCpf()));
             r.setColaboradorNome(a.getColaborador().getNome());
         }
         return r;

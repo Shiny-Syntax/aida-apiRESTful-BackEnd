@@ -1,6 +1,7 @@
 package com.shinysyntax.aida.aida.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,18 +33,23 @@ public class Agenda {
     @jakarta.persistence.Convert(converter = com.shinysyntax.aida.aida.converter.PriorityConverter.class)
     @Column(length = 20)
     private com.shinysyntax.aida.aida.enums.Priority prioridade;
+
     private String plataforma;
+
     @jakarta.persistence.Convert(converter = com.shinysyntax.aida.aida.converter.AgendaStatusConverter.class)
     @Column(length = 20)
     private com.shinysyntax.aida.aida.enums.AgendaStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "colaborador_cpf_colaborador")
+    @JoinColumn(name = "cpf_colaborador")
     private Colaborador colaborador;
+
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
 
     public Agenda() {}
 
-    // getters and setters
+    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getTipo() { return tipo; }
@@ -60,4 +66,6 @@ public class Agenda {
     public void setStatus(com.shinysyntax.aida.aida.enums.AgendaStatus status) { this.status = status; }
     public Colaborador getColaborador() { return colaborador; }
     public void setColaborador(Colaborador colaborador) { this.colaborador = colaborador; }
+    public UUID getUserId() { return userId; }
+    public void setUserId(UUID userId) { this.userId = userId; }
 }

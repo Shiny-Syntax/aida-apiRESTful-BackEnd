@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class RegistroDiarioResponse {
     private Long id;
     private LocalDate dataRegistro;
-    private Integer escalaEmocional;
+    private Double escalaEmocional;
     private Integer tempoTela;
     private Integer pausasRealizadas;
     private String observacoesColaborador;
@@ -18,8 +18,8 @@ public class RegistroDiarioResponse {
     public void setId(Long id) { this.id = id; }
     public LocalDate getDataRegistro() { return dataRegistro; }
     public void setDataRegistro(LocalDate dataRegistro) { this.dataRegistro = dataRegistro; }
-    public Integer getEscalaEmocional() { return escalaEmocional; }
-    public void setEscalaEmocional(Integer escalaEmocional) { this.escalaEmocional = escalaEmocional; }
+    public Double getEscalaEmocional() { return escalaEmocional; }
+    public void setEscalaEmocional(Double escalaEmocional) { this.escalaEmocional = escalaEmocional; }
     public Integer getTempoTela() { return tempoTela; }
     public void setTempoTela(Integer tempoTela) { this.tempoTela = tempoTela; }
     public Integer getPausasRealizadas() { return pausasRealizadas; }
