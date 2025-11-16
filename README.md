@@ -13,9 +13,6 @@ Backend REST em Spring Boot para gerenciar colaboradores, agendas e registros di
 - Swagger / OpenAPI (uso recomendado)
 - Banco H2 (console e como usar)
 - Endpoints principais
-- Exemplos rápidos
-- Testes
-- Troubleshooting
 
 ---
 
