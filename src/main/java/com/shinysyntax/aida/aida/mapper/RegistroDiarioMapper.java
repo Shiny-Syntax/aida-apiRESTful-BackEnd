@@ -43,8 +43,10 @@ public class RegistroDiarioMapper {
         resp.setObservacoesColaborador(r.getObservacoesColaborador());
         resp.setObservacoesAIDA(r.getObservacoesAIDA());
 
-        if (r.getColaborador() != null)
+        if (r.getColaborador() != null) {
             resp.setColaboradorCpf(r.getColaborador().getCpf());
+            resp.setColaboradorNome(r.getColaborador().getNome());
+        }
 
         return resp;
     }

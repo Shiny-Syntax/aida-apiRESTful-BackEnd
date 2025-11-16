@@ -11,6 +11,7 @@ public class RegistroDiarioResponse {
     private String observacoesColaborador;
     private String observacoesAIDA;
     private String colaboradorCpf;
+    private String colaboradorNome;
 
     // getters and setters
     public Long getId() { return id; }
@@ -29,4 +30,6 @@ public class RegistroDiarioResponse {
     public void setObservacoesAIDA(String observacoesAIDA) { this.observacoesAIDA = observacoesAIDA; }
     public String getColaboradorCpf() { return colaboradorCpf; }
     public void setColaboradorCpf(String colaboradorCpf) { this.colaboradorCpf = colaboradorCpf; }
+    public String getColaboradorNome() { return colaboradorNome; }
+    public void setColaboradorNome(String colaboradorNome) { this.colaboradorNome = colaboradorNome; }
 }

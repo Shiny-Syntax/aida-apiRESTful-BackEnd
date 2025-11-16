@@ -36,7 +36,10 @@ public class AgendaMapper {
         r.setPrioridade(a.getPrioridade() == null ? null : a.getPrioridade().getLabel());
         r.setPlataforma(a.getPlataforma());
         r.setStatus(a.getStatus() == null ? null : a.getStatus().getLabel());
-        if (a.getColaborador() != null) r.setColaboradorCpf(a.getColaborador().getCpf());
+        if (a.getColaborador() != null) {
+            r.setColaboradorCpf(a.getColaborador().getCpf());
+            r.setColaboradorNome(a.getColaborador().getNome());
+        }
         return r;
     }
 }

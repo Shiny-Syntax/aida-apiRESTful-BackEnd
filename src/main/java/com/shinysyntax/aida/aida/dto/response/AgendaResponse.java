@@ -11,6 +11,7 @@ public class AgendaResponse {
     private String plataforma;
     private String status;
     private String colaboradorCpf;
+    private String colaboradorNome;
 
     // getters and setters
     public Long getId() { return id; }
@@ -29,4 +30,6 @@ public class AgendaResponse {
     public void setStatus(String status) { this.status = status; }
     public String getColaboradorCpf() { return colaboradorCpf; }
     public void setColaboradorCpf(String colaboradorCpf) { this.colaboradorCpf = colaboradorCpf; }
+    public String getColaboradorNome() { return colaboradorNome; }
+    public void setColaboradorNome(String colaboradorNome) { this.colaboradorNome = colaboradorNome; }
 }
