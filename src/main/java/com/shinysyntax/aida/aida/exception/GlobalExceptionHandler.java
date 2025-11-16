@@ -43,7 +43,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     // -------------------------------------------------------------
-    // 404 — NOT FOUND
+    // 404 — COLABORADOR NOT FOUND (custom)
+    // -------------------------------------------------------------
+    @ExceptionHandler(ColaboradorNotFoundException.class)
+    public ResponseEntity<Object> handleColaboradorNotFound(ColaboradorNotFoundException ex, WebRequest request) {
+
+        ApiResponse body = ApiResponse.error(
+                404,
+                "Colaborador Not Found",
+                ex.getMessage(),
+                extractPath(request),
+                null
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    // -------------------------------------------------------------
+    // 404 — NOT FOUND (generic)
     // -------------------------------------------------------------
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleNotFound(ResourceNotFoundException ex, WebRequest request) {

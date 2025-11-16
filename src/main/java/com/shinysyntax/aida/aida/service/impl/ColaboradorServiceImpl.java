@@ -6,7 +6,7 @@ import java.util.Objects;
 import org.springframework.stereotype.Service;
 
 import com.shinysyntax.aida.aida.entity.Colaborador;
-import com.shinysyntax.aida.aida.exception.ResourceNotFoundException;
+import com.shinysyntax.aida.aida.exception.ColaboradorNotFoundException;
 import com.shinysyntax.aida.aida.repository.ColaboradorRepository;
 import com.shinysyntax.aida.aida.service.ColaboradorService;
 
@@ -27,7 +27,7 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     public Colaborador update(String cpf, Colaborador colaborador) {
         Objects.requireNonNull(cpf, "cpf must not be null");
         Objects.requireNonNull(colaborador, "colaborador must not be null");
-        Colaborador existing = repo.findById(cpf).orElseThrow(() -> new ResourceNotFoundException("Colaborador not found"));
+        Colaborador existing = repo.findById(cpf).orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         existing.setNome(colaborador.getNome());
         existing.setEmail(colaborador.getEmail());
         existing.setTelefone(colaborador.getTelefone());
@@ -43,7 +43,7 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     @Override
     public Colaborador findByCpf(String cpf) {
         Objects.requireNonNull(cpf, "cpf must not be null");
-        return repo.findById(cpf).orElseThrow(() -> new ResourceNotFoundException("Colaborador not found"));
+        return repo.findById(cpf).orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
     }
 
     @Override

@@ -20,7 +20,7 @@ import com.shinysyntax.aida.aida.dto.request.RegistroDiarioRequest;
 import com.shinysyntax.aida.aida.dto.response.RegistroDiarioResponse;
 import com.shinysyntax.aida.aida.entity.Colaborador;
 import com.shinysyntax.aida.aida.entity.RegistroDiario;
-import com.shinysyntax.aida.aida.exception.ResourceNotFoundException;
+import com.shinysyntax.aida.aida.exception.ColaboradorNotFoundException;
 import com.shinysyntax.aida.aida.mapper.RegistroDiarioMapper;
 import com.shinysyntax.aida.aida.repository.ColaboradorRepository;
 import com.shinysyntax.aida.aida.service.RegistroDiarioService;
@@ -49,7 +49,7 @@ public class RegistroDiarioController {
     public ResponseEntity<RegistroDiarioResponse> create(@Valid @RequestBody RegistroDiarioRequest req) {
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
         Colaborador c = colaboradorRepository.findById(cpf)
-            .orElseThrow(() -> new ResourceNotFoundException("Colaborador not found: " + cpf));
+            .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         RegistroDiario saved = service.create(RegistroDiarioMapper.toEntity(req, c));
         RegistroDiarioResponse resp = RegistroDiarioMapper.toResponse(Objects.requireNonNull(saved));
         URI uri = URI.create("/api/registros/" + resp.getId());
@@ -62,7 +62,7 @@ public class RegistroDiarioController {
         Objects.requireNonNull(id, "id must not be null");
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
         Colaborador c = colaboradorRepository.findById(cpf)
-            .orElseThrow(() -> new ResourceNotFoundException("Colaborador not found: " + cpf));
+            .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         RegistroDiario updated = service.update(id, RegistroDiarioMapper.toEntity(req, c));
         return RegistroDiarioMapper.toResponse(Objects.requireNonNull(updated));
     }

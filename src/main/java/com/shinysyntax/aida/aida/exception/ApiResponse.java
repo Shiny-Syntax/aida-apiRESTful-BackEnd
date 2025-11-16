@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse {
 
-    private LocalDateTime timestamp;
+    private final LocalDateTime timestamp;
     private int statusCode;
     private String path;
     private String message;

@@ -20,7 +20,7 @@ import com.shinysyntax.aida.aida.dto.request.AgendaRequest;
 import com.shinysyntax.aida.aida.dto.response.AgendaResponse;
 import com.shinysyntax.aida.aida.entity.Agenda;
 import com.shinysyntax.aida.aida.entity.Colaborador;
-import com.shinysyntax.aida.aida.exception.ResourceNotFoundException;
+import com.shinysyntax.aida.aida.exception.ColaboradorNotFoundException;
 import com.shinysyntax.aida.aida.mapper.AgendaMapper;
 import com.shinysyntax.aida.aida.repository.ColaboradorRepository;
 import com.shinysyntax.aida.aida.service.AgendaService;
@@ -49,7 +49,7 @@ public class AgendaController {
     public ResponseEntity<AgendaResponse> create(@Valid @RequestBody AgendaRequest req) {
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
         Colaborador c = colaboradorRepository.findById(cpf)
-                .orElseThrow(() -> new ResourceNotFoundException("Colaborador not found: " + cpf));
+            .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         Agenda saved = service.create(AgendaMapper.toEntity(req, c));
         AgendaResponse resp = AgendaMapper.toResponse(Objects.requireNonNull(saved));
         URI uri = URI.create("/api/agenda/" + resp.getId());
@@ -62,7 +62,7 @@ public class AgendaController {
         Objects.requireNonNull(id, "id must not be null");
         String cpf = Objects.requireNonNull(req.getColaboradorCpf(), "colaboradorCpf must not be null");
         Colaborador c = colaboradorRepository.findById(cpf)
-                .orElseThrow(() -> new ResourceNotFoundException("Colaborador not found: " + cpf));
+            .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador not found: " + cpf));
         Agenda updated = service.update(id, AgendaMapper.toEntity(req, c));
         return AgendaMapper.toResponse(Objects.requireNonNull(updated));
     }
