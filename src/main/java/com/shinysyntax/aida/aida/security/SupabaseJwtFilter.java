@@ -2,6 +2,7 @@ package com.shinysyntax.aida.aida.security;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
@@ -10,7 +11,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.springframework.beans.factory.annotation.Value;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -73,15 +73,7 @@ public class SupabaseJwtFilter extends HttpFilter {
                     jwt = JWT.decode(token);
                 }
 
-                if (jwt != null) {
-                    String userId = jwt.getClaim("user_id").asString();
-                    if (userId == null) {
-                        userId = jwt.getSubject();
-                    }
-                    if (userId != null) {
-                        req.setAttribute("supabase_user_id", userId);
-                    }
-                }
+                // user identifier extraction removed
             } catch (JWTDecodeException | IllegalArgumentException e) {
                 // don't fail request on decode/parse problems; leave attribute absent
             }

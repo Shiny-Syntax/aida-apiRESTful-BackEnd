@@ -3,7 +3,6 @@ package com.shinysyntax.aida.aida.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,8 +23,7 @@ public class Colaborador {
     @Column(name = "cpf_colaborador")
     private Long cpf;
 
-    @Column(name = "user_id", nullable = false)
-    private UUID userId;
+    
 
     @Column(nullable = false)
     private String nome;
@@ -69,8 +67,7 @@ public class Colaborador {
     // getters and setters
     public Long getCpf() { return cpf; }
     public void setCpf(Long cpf) { this.cpf = cpf; }
-    public UUID getUserId() { return userId; }
-    public void setUserId(UUID userId) { this.userId = userId; }
+    
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
     public String getEmail() { return email; }

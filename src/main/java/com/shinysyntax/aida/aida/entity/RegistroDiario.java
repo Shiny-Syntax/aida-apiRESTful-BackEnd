@@ -1,7 +1,6 @@
 package com.shinysyntax.aida.aida.entity;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,8 +38,7 @@ public class RegistroDiario {
     @JoinColumn(name = "cpf_colaborador")
     private Colaborador colaborador;
 
-    @Column(name = "user_id", nullable = false)
-    private UUID userId;
+    
 
     public RegistroDiario() {}
 
@@ -61,6 +59,5 @@ public class RegistroDiario {
     public void setObservacoesAIDA(String observacoesAIDA) { this.observacoesAIDA = observacoesAIDA; }
     public Colaborador getColaborador() { return colaborador; }
     public void setColaborador(Colaborador colaborador) { this.colaborador = colaborador; }
-    public UUID getUserId() { return userId; }
-    public void setUserId(UUID userId) { this.userId = userId; }
+    
 }
