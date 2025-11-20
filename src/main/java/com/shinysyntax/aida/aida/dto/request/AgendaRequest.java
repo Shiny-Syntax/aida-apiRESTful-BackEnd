@@ -9,20 +9,22 @@ import jakarta.validation.constraints.NotNull;
 public class AgendaRequest {
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "O campo 'tipo' é obrigatório.")
     private String tipo;
 
     private String descricao;
 
-    @NotNull
-    @Future
+    @NotNull(message = "O campo 'dataHora' é obrigatório.")
+    @Future(message = "A data e hora devem estar no futuro.")
     private LocalDateTime dataHora;
 
+    @NotBlank(message = "O campo 'prioridade' é obrigatório e deve ser: ALTA, MEDIA ou BAIXA.")
     private String prioridade;
     private String plataforma;
+    @NotBlank(message = "O campo 'status' é obrigatório e deve ser : AGENDADO, EM ANDAMENTO, CANCELADO, CONCLUÍDO")
     private String status;
 
-    @NotBlank
+    @NotBlank(message = "O CPF do colaborador é obrigatório.")
     private String colaboradorCpf;
 
     // getters and setters

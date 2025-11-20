@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -31,7 +30,7 @@ public class RegistroDiario {
     @Column(length = 400)
     private String observacoesColaborador;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String observacoesAIDA;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -10,7 +10,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -37,20 +36,21 @@ public class SupabaseJwtFilter extends HttpFilter {
             String token = auth.substring(7);
             try {
                 // Try HS256 verification when a secret is provided via env var `APP_SUPABASE_JWT_SECRET`.
-                DecodedJWT jwt = null;
+                boolean verified = false;
                 if (jwtSecret != null && !jwtSecret.isBlank()) {
                     try {
                         Algorithm alg = Algorithm.HMAC256(jwtSecret);
                         JWTVerifier verifier = JWT.require(alg).build();
-                        jwt = verifier.verify(token);
+                        verifier.verify(token); // verify, result not stored
+                        verified = true;
                     } catch (JWTVerificationException vex) {
                         // verification failed; fall through to try JWKS or decode-only
-                        jwt = null;
+                        verified = false;
                     }
                 }
 
                 // If HS256 verification didn't run or failed, try JWKS if configured
-                if (jwt == null && jwksUrl != null && !jwksUrl.isBlank()) {
+                if (!verified && jwksUrl != null && !jwksUrl.isBlank()) {
                     try {
                         java.net.URL url = new java.net.URI(jwksUrl).toURL();
                         com.auth0.jwk.UrlJwkProvider provider = new com.auth0.jwk.UrlJwkProvider(url);
@@ -60,20 +60,19 @@ public class SupabaseJwtFilter extends HttpFilter {
                             java.security.interfaces.RSAPublicKey publicKey = (java.security.interfaces.RSAPublicKey) jwk.getPublicKey();
                             Algorithm alg = Algorithm.RSA256(publicKey, null);
                             JWTVerifier verifier = JWT.require(alg).build();
-                            jwt = verifier.verify(token);
+                            verifier.verify(token);
+                            verified = true;
                         }
                     } catch (java.net.URISyntaxException | java.io.IOException | com.auth0.jwk.JwkException | JWTVerificationException ex) {
                         // JWKS verification failed or not available; fall back to decode-only below
-                        jwt = null;
+                        verified = false;
                     }
                 }
 
                 // Fallback: decode without verification (not recommended for production)
-                if (jwt == null) {
-                    jwt = JWT.decode(token);
+                if (!verified) {
+                    JWT.decode(token);
                 }
-
-                // user identifier extraction removed
             } catch (JWTDecodeException | IllegalArgumentException e) {
                 // don't fail request on decode/parse problems; leave attribute absent
             }
