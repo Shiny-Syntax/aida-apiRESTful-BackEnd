@@ -10,7 +10,6 @@ public class AgendaMapper {
     public static Agenda toEntity(AgendaRequest req, Colaborador colaborador) {
         if (req == null) return null;
         Agenda a = new Agenda();
-        a.setId(req.getId());
         a.setTipo(req.getTipo());
         a.setDescricao(req.getDescricao());
         a.setDataHora(req.getDataHora());

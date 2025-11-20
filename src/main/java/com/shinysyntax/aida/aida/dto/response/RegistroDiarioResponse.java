@@ -2,8 +2,11 @@ package com.shinysyntax.aida.aida.dto.response;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class RegistroDiarioResponse {
     private Long id;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataRegistro;
     private Double escalaEmocional;
     private Integer tempoTela;

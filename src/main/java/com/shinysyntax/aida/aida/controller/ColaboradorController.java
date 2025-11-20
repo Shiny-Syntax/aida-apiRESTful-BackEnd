@@ -61,6 +61,7 @@ public class ColaboradorController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201", description = "Colaborador criado com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados inválidos — algum campo obrigatório está nulo"),
+        @ApiResponse(responseCode = "422", description = "Validation Error — campos inválidos"),
         @ApiResponse(responseCode = "409", description = "Conflito — já existe um registro com este CPF"),
         @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
@@ -77,6 +78,7 @@ public class ColaboradorController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Colaborador atualizado com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados inválidos"),
+        @ApiResponse(responseCode = "422", description = "Validation Error — campos inválidos"),
         @ApiResponse(responseCode = "404", description = "Colaborador não encontrado"),
         @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })

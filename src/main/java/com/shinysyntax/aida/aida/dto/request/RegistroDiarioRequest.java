@@ -2,6 +2,8 @@ package com.shinysyntax.aida.aida.dto.request;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -11,6 +13,7 @@ public class RegistroDiarioRequest {
     
 
     @NotNull(message = "O campo 'dataRegistro' é obrigatório.")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataRegistro;
 
     @Min(value = 0, message = "A escala emocional deve ser entre 0 e 10.")
