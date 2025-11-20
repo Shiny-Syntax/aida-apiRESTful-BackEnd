@@ -12,7 +12,12 @@ public class AgendaMapper {
         Agenda a = new Agenda();
         a.setTipo(req.getTipo());
         a.setDescricao(req.getDescricao());
-        a.setDataHora(req.getDataHora());
+        // request now supplies an OffsetDateTime (ISO/Z). Convert to LocalDateTime for the entity.
+        if (req.getDataHora() != null) {
+            a.setDataHora(req.getDataHora().toLocalDateTime());
+        } else {
+            a.setDataHora(null);
+        }
         // map prioridade and status safely
         if (req.getPrioridade() != null) {
             a.setPrioridade(com.shinysyntax.aida.aida.enums.Priority.fromLabel(req.getPrioridade()));

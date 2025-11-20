@@ -4,12 +4,14 @@ import java.time.LocalDate;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class ColaboradorRequest {
 
     @NotBlank(message = "O CPF do colaborador é obrigatório.")
-    @Size(max = 11, message = "O CPF do colaborador deve ter no máximo 11 caracteres.")
+    @Size(min = 11, max = 11, message = "O CPF do colaborador deve ter 11 caracteres.")
+    @Pattern(regexp = "\\d{11}", message = "O CPF deve conter apenas números (11 dígitos).")
     private String cpf;
 
     @NotBlank(message = "O nome do colaborador é obrigatório.")
