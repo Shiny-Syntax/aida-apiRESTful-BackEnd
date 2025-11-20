@@ -1,5 +1,6 @@
 package com.shinysyntax.aida.aida.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -29,6 +31,9 @@ public class Agenda {
     private String descricao;
 
     private LocalDateTime dataHora;
+    
+    @Column(name = "completion_date")
+    private LocalDate completionDate;
 
     @jakarta.persistence.Convert(converter = com.shinysyntax.aida.aida.converter.PriorityConverter.class)
     @Column(length = 20)
@@ -48,6 +53,13 @@ public class Agenda {
 
     public Agenda() {}
 
+    @PrePersist
+    private void prePersist() {
+        if (this.dataHora == null) {
+            this.dataHora = java.time.LocalDateTime.now();
+        }
+    }
+
     // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -57,6 +69,8 @@ public class Agenda {
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
+    public java.time.LocalDate getCompletionDate() { return completionDate; }
+    public void setCompletionDate(java.time.LocalDate completionDate) { this.completionDate = completionDate; }
     public com.shinysyntax.aida.aida.enums.Priority getPrioridade() { return prioridade; }
     public void setPrioridade(com.shinysyntax.aida.aida.enums.Priority prioridade) { this.prioridade = prioridade; }
     public String getPlataforma() { return plataforma; }

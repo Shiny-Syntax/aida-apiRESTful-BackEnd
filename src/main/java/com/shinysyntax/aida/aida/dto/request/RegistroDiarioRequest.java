@@ -7,12 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public class RegistroDiarioRequest {
     
 
-    @NotNull(message = "O campo 'dataRegistro' é obrigatório.")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataRegistro;
 

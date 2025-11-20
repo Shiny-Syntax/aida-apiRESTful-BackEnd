@@ -1,5 +1,6 @@
 package com.shinysyntax.aida.aida.dto.response;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -10,6 +11,8 @@ public class AgendaResponse {
     private String descricao;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataHora;
+    @com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate completionDate;
     private String prioridade;
     private String plataforma;
     private String status;
@@ -25,6 +28,8 @@ public class AgendaResponse {
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
+    public LocalDate getCompletionDate() { return completionDate; }
+    public void setCompletionDate(LocalDate completionDate) { this.completionDate = completionDate; }
     public String getPrioridade() { return prioridade; }
     public void setPrioridade(String prioridade) { this.prioridade = prioridade; }
     public String getPlataforma() { return plataforma; }

@@ -1,6 +1,8 @@
 package com.shinysyntax.aida.aida.dto.request;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,8 +14,9 @@ public class AgendaRequest {
 
     private String descricao;
 
-    @NotNull(message = "O campo 'dataHora' é obrigatório.")
-    private OffsetDateTime dataHora;
+    @NotNull(message = "O campo 'completionDate' é obrigatório.")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate completionDate;
 
     @NotBlank(message = "O campo 'prioridade' é obrigatório e deve ser: ALTA, MEDIA ou BAIXA.")
     private String prioridade;
@@ -29,8 +32,8 @@ public class AgendaRequest {
     public void setTipo(String tipo) { this.tipo = tipo; }
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
-    public OffsetDateTime getDataHora() { return dataHora; }
-    public void setDataHora(OffsetDateTime dataHora) { this.dataHora = dataHora; }
+    public LocalDate getCompletionDate() { return completionDate; }
+    public void setCompletionDate(LocalDate completionDate) { this.completionDate = completionDate; }
     public String getPrioridade() { return prioridade; }
     public void setPrioridade(String prioridade) { this.prioridade = prioridade; }
     public String getPlataforma() { return plataforma; }

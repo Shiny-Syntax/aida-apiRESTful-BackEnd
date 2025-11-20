@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -42,6 +43,13 @@ public class RegistroDiario {
     
 
     public RegistroDiario() {}
+
+    @PrePersist
+    private void prePersist() {
+        if (this.dataRegistro == null) {
+            this.dataRegistro = java.time.LocalDate.now();
+        }
+    }
 
     // Getters e Setters
     public Long getId() { return id; }
