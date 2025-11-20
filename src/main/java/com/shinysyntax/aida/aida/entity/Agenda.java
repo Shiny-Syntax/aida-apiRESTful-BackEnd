@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -26,7 +25,7 @@ public class Agenda {
 
     private String tipo;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String descricao;
 
     private LocalDateTime dataHora;

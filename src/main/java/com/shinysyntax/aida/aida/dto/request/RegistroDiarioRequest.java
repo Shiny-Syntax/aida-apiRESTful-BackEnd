@@ -13,7 +13,7 @@ public class RegistroDiarioRequest {
     
 
     @NotNull(message = "O campo 'dataRegistro' é obrigatório.")
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataRegistro;
 
     @Min(value = 0, message = "A escala emocional deve ser entre 0 e 10.")
