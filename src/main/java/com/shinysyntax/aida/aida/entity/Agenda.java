@@ -32,8 +32,8 @@ public class Agenda {
 
     private LocalDateTime dataHora;
     
-    @Column(name = "completion_date")
-    private LocalDate completionDate;
+    @Column(name = "data_conclusao")
+    private LocalDate dataConclusao;
 
     @jakarta.persistence.Convert(converter = com.shinysyntax.aida.aida.converter.PriorityConverter.class)
     @Column(length = 20)
@@ -69,8 +69,8 @@ public class Agenda {
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
-    public java.time.LocalDate getCompletionDate() { return completionDate; }
-    public void setCompletionDate(java.time.LocalDate completionDate) { this.completionDate = completionDate; }
+    public java.time.LocalDate getDataConclusao() { return dataConclusao; }
+    public void setDataConclusao(java.time.LocalDate dataConclusao) { this.dataConclusao = dataConclusao; }
     public com.shinysyntax.aida.aida.enums.Priority getPrioridade() { return prioridade; }
     public void setPrioridade(com.shinysyntax.aida.aida.enums.Priority prioridade) { this.prioridade = prioridade; }
     public String getPlataforma() { return plataforma; }

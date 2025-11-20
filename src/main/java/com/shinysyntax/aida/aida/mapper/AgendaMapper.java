@@ -14,9 +14,9 @@ public class AgendaMapper {
         a.setDescricao(req.getDescricao());
         // `dataHora` is managed by the server; ignore any client-supplied value for dataHora.
         a.setDataHora(null);
-        // Accept completionDate provided by the client (it is required).
-        if (req.getCompletionDate() != null) {
-            a.setCompletionDate(req.getCompletionDate());
+        // Accept dataConclusao (data_conclusao) provided by the client (it is required).
+        if (req.getDataConclusao() != null) {
+            a.setDataConclusao(req.getDataConclusao());
         }
         // map prioridade and status safely
         if (req.getPrioridade() != null) {
@@ -37,7 +37,7 @@ public class AgendaMapper {
         r.setTipo(a.getTipo());
         r.setDescricao(a.getDescricao());
         r.setDataHora(a.getDataHora());
-        r.setCompletionDate(a.getCompletionDate());
+        r.setDataConclusao(a.getDataConclusao());
         r.setPrioridade(a.getPrioridade() == null ? null : a.getPrioridade().getLabel());
         r.setPlataforma(a.getPlataforma());
         r.setStatus(a.getStatus() == null ? null : a.getStatus().getLabel());

@@ -31,8 +31,8 @@ public class AgendaServiceImpl implements AgendaService {
         Agenda existing = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Agenda not found"));
         existing.setTipo(agenda.getTipo());
         existing.setDescricao(agenda.getDescricao());
-        // Allow updating completionDate from client-provided value; dataHora remains server-controlled.
-        existing.setCompletionDate(agenda.getCompletionDate());
+        // Allow updating dataConclusao (data_conclusao) from client-provided value; dataHora remains server-controlled.
+        existing.setDataConclusao(agenda.getDataConclusao());
         existing.setPrioridade(agenda.getPrioridade());
         existing.setPlataforma(agenda.getPlataforma());
         existing.setStatus(agenda.getStatus());

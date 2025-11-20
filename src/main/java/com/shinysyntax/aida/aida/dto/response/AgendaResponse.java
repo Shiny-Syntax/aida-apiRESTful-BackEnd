@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AgendaResponse {
     private Long id;
@@ -12,7 +13,8 @@ public class AgendaResponse {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataHora;
     @com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate completionDate;
+    @JsonProperty("data_conclusao")
+    private LocalDate dataConclusao;
     private String prioridade;
     private String plataforma;
     private String status;
@@ -28,8 +30,8 @@ public class AgendaResponse {
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
-    public LocalDate getCompletionDate() { return completionDate; }
-    public void setCompletionDate(LocalDate completionDate) { this.completionDate = completionDate; }
+    public LocalDate getDataConclusao() { return dataConclusao; }
+    public void setDataConclusao(LocalDate dataConclusao) { this.dataConclusao = dataConclusao; }
     public String getPrioridade() { return prioridade; }
     public void setPrioridade(String prioridade) { this.prioridade = prioridade; }
     public String getPlataforma() { return plataforma; }
