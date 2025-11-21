@@ -9,13 +9,10 @@ Com operações completas de CRUD, o PET facilita a gestão de pessoas, o acompa
 Se você deseja conehcer a **API de Teste**, utilizada para desenvolvimento, clique [aqui](https://github.com/Shiny-Syntax/aida-apiRESTful).
 
 ## Conheça o projeto
-```
-https://aida-apirestful-backend-production.up.railway.app/
-```
-Para validar e gerenciar os endpoints, bem como monitorar a aplicação em produção, recomendamos utilizar a **documentação interativa da API via Swagger**, garantindo **segurança, rastreabilidade e facilidade de uso**.
-```
-https://aida-apirestful-backend-production.up.railway.app/swagger-ui/index.html
-```
+
+### [Acesse a API](https://aida-apirestful-backend-production.up.railway.app/)<br>
+Para validar e gerenciar os endpoints, bem como monitorar a aplicação em produção, recomendamos utilizar a [documentação Swagger da API](https://aida-apirestful-backend-production.up.railway.app/swagger-ui/index.html), garantindo **segurança, rastreabilidade e facilidade de uso**.<br>
+
 
 ### Tecnologias Utilizadas
 
