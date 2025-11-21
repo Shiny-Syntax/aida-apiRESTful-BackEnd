@@ -13,6 +13,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -65,6 +67,17 @@ public class Colaborador {
         // garante valores default mesmo que não setados
         if (this.problemaSaude == null) this.problemaSaude = "NÃO POSSUI PROBLEMAS DE SAÚDE";
         if (this.medicamentoUsoDiario == null) this.medicamentoUsoDiario = "NÃO FAZ USO DE MEDICAMENTO CONTROLADO";
+    }
+
+    @PrePersist
+    @PreUpdate
+    private void ensureDefaultTextFields() {
+        if (this.problemaSaude == null || this.problemaSaude.trim().isEmpty()) {
+            this.problemaSaude = "NÃO POSSUI PROBLEMAS DE SAÚDE";
+        }
+        if (this.medicamentoUsoDiario == null || this.medicamentoUsoDiario.trim().isEmpty()) {
+            this.medicamentoUsoDiario = "NÃO FAZ USO DE MEDICAMENTO CONTROLADO";
+        }
     }
 
     // getters e setters

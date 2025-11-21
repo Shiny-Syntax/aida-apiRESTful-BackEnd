@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.7</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+		<parent>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-parent</artifactId>
+			<version>3.5.8</version>
+			<relativePath/> <!-- lookup parent from repository -->
+		</parent>
 	<groupId>com.shinysyntax.aida</groupId>
 	<artifactId>aida</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -43,11 +43,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+
 
 		<!-- PostgreSQL driver for Supabase/Postgres runtime -->
 		<dependency>
@@ -92,19 +88,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<!-- Ensure tests run with an in-memory H2 datasource (overrides application.properties during tests) -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<systemPropertyVariables>
-						<spring.datasource.url>jdbc:h2:mem:aidadb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</spring.datasource.url>
-						<spring.datasource.driver-class-name>org.h2.Driver</spring.datasource.driver-class-name>
-						<spring.datasource.username>sa</spring.datasource.username>
-						<spring.datasource.password></spring.datasource.password>
-						<spring.jpa.hibernate.ddl-auto>create</spring.jpa.hibernate.ddl-auto>
-					</systemPropertyVariables>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
