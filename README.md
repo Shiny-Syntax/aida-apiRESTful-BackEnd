@@ -1,6 +1,5 @@
 <img width="380" alt="Image" src="https://github.com/user-attachments/assets/3488884e-d54b-46fd-952e-6a8ee5d9b7d6" /><br>
 <br>
-
 # Sobre
 O **PET** (Pessoas, Eventos e Tarefas) é a nossa API RESTful projetada para **gerenciar** colaboradores, agendas e registros diários de forma ágil e organizada. Ele funciona como um ajudante da AIDA, cuidando do **processamento interno dos dados**, garantindo que todas as informações sejam corretamente **validadas, tratadas e armazenadas no banco de dados**.
 
@@ -8,11 +7,17 @@ Com operações completas de CRUD, o PET facilita a gestão de pessoas, o acompa
 
 Se você deseja conehcer a **API de Teste**, utilizada para desenvolvimento, clique [aqui](https://github.com/Shiny-Syntax/aida-apiRESTful).
 
+### Colaboradores
+### Turma 2ESPG
+| Nome | RM |
+|------|------|
+| Ana Laura | 554375 |
+| Ianny Raquel | 559096 |
+
 ## Conheça o projeto
 
 ### [Acesse a API](https://aida-apirestful-backend-production.up.railway.app/)<br>
 Para validar e gerenciar os endpoints, bem como monitorar a aplicação em produção, recomendamos utilizar a [documentação Swagger da API](https://aida-apirestful-backend-production.up.railway.app/swagger-ui/index.html), garantindo **segurança, rastreabilidade e facilidade de uso**.<br>
-
 
 ### Tecnologias Utilizadas
 
