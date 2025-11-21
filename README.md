@@ -19,10 +19,10 @@ https://aida-apirestful-backend-production.up.railway.app/swagger-ui/index.html
 
 ### Tecnologias Utilizadas
 
-![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-DB-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-![Railway](https://img.shields.io/badge/Railway-Hosting-8257E5?style=for-the-badge&logo=railway&logoColor=white)
+![Java](https://img.shields.io/badge/Java-21-FA7921?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.8-566E3D?style=for-the-badge&logo=spring&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-DB-0C4767?style=for-the-badge&logo=postgresql&logoColor=white)
+![Railway](https://img.shields.io/badge/Railway-Hosting-B9A44C?style=for-the-badge&logo=railway&logoColor=white)
 
 
 - **Spring Boot Web** – desenvolvimento de APIs RESTful.
