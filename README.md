@@ -17,7 +17,8 @@ Se você deseja conehcer a **API de Teste**, utilizada para desenvolvimento, cli
 ## Conheça o projeto
 
 ### [Acesse a API](https://aida-apirestful-backend-production.up.railway.app/)<br>
-Para validar e gerenciar os endpoints, bem como monitorar a aplicação em produção, recomendamos utilizar a [documentação Swagger da API](https://aida-apirestful-backend-production.up.railway.app/swagger-ui/index.html), garantindo **segurança, rastreabilidade e facilidade de uso**.<br>
+- Para validar e gerenciar os endpoints, bem como monitorar a aplicação em produção, recomendamos utilizar a [documentação Swagger da API](https://aida-apirestful-backend-production.up.railway.app/swagger-ui/index.html), garantindo **segurança, rastreabilidade e facilidade de uso**.<br>
+- Clique no [link](https://youtu.be/uveVkuJY2y0) para assistir ao vídeo demonstrando o funcionamento do banco de dados na nuvem.
 
 ### Tecnologias Utilizadas
 
